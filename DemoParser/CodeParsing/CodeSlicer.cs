@@ -9,6 +9,8 @@ namespace DemoParser.CodeParsing
 {
     internal class CodeSlicer
     {
+        private readonly CodeReplacement _codeReplacement = new CodeReplacement();
+
         private readonly string[] _inputLines;
         private readonly RegionContainer _regions;
         private readonly Dictionary<string, LinesRange> _walkthroughRanges = new Dictionary<string, LinesRange>();
@@ -114,8 +116,11 @@ namespace DemoParser.CodeParsing
         {
             var line = GetCodeLine(num);
             var withoutLeadingWhitespace = TrimLeadingWhitespaces(line);
-            return withoutLeadingWhitespace;
+            var withReplacementTokenApplied = InsertReplacementToken(withoutLeadingWhitespace);
+            return withReplacementTokenApplied;
         }
+
+        private string InsertReplacementToken(string line) => _codeReplacement.ApplyTokens(line);
 
         private string TrimLeadingWhitespaces(string line)
         {

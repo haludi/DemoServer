@@ -41,12 +41,12 @@ namespace DemoServer.Controllers.Demos.Basics.CreateDocument
             // Define the object to be stored 
             var newCompany = new Company
             {
-                Name = companyName,
-                Phone = companyPhone,
+                Name = companyName,  //replace:companyName
+                Phone = companyPhone,  //replace:companyPhone
                 Contact = new Contact
                 {
-                    Name = contactName,
-                    Title = contactTitle
+                    Name = contactName,  //replace:contactName
+                    Title = contactTitle  //replace:contactTitle
                 }
             };
             #endregion

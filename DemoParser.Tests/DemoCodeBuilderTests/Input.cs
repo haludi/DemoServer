@@ -19,6 +19,7 @@ namespace DemoParser.Tests.DemoCodeBuilderTests
             #region Demo
             var serverURL = "http://localhost:8080";
             var databaseName = "Demo";
+            var companyName = "Hibernating Rhinos";
 
             #region Step_1
             var documentStore = new DocumentStore
@@ -45,7 +46,7 @@ namespace DemoParser.Tests.DemoCodeBuilderTests
 
             var newCompany = new Company
             {
-                Name = "Hibernating Rhinos",
+                Name = companyName,  //replace:companyName
                 Phone = "(+972)052-5933777",
                 Contact = new Contact
                 {

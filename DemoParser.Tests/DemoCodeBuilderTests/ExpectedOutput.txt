@@ -2,6 +2,7 @@
 using Raven.Client.Exceptions;
 var serverURL = "http://localhost:8080";
 var databaseName = "Demo";
+var companyName = "Hibernating Rhinos";
 
 var documentStore = new DocumentStore
 {
@@ -22,7 +23,7 @@ catch (ConcurrencyException)
 
 var newCompany = new Company
 {
-    Name = "Hibernating Rhinos",
+    Name = [[companyName]],
     Phone = "(+972)052-5933777",
     Contact = new Contact
     {

@@ -60,9 +60,9 @@ namespace DemoServer.Controllers.Demos.Basics.EditDocument
                 
                 #region Step_4
                 // Update the data 
-                company.Name = companyName;
+                company.Name = companyName;  //replace:companyName
                 #endregion
-                
+
                 #region Step_5
                 // Save the entity as a document in the database
                 session.SaveChanges();

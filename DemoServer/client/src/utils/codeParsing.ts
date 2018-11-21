@@ -1,3 +1,5 @@
+import { DemoParameter } from "../models/demoModels";
+
 export function sliceIntoTwo(text: string, pivotLineNum: number): string[] {
     const newLineRegex = /\r?\n/gm;
 
@@ -17,4 +19,24 @@ export function sliceIntoTwo(text: string, pivotLineNum: number): string[] {
     const secondResult = text.substr(sliceIndex + 2);
 
     return [firstResult, secondResult];
+}
+
+function getReplacementValue(param: DemoParameter) {
+    const { value, type } = param;
+
+    if (type === "text") {
+        return `"${value}"`;
+    }
+
+    return value;
+}
+
+export function applyReplacementToken(code: string, param: DemoParameter) {
+    if (!code || !param) {
+        return code;
+    }
+
+    const toReplace = `[[${param.name}]]`;
+    const value = getReplacementValue(param);
+    return code.replace(toReplace, value);
 }

@@ -3,7 +3,7 @@ import { DemoThunkAction } from ".";
 import { apiError } from "./errorActions";
 import { DemoService, RunDemoService } from "../../utils/Services";
 import { DemoDto } from "../../models/dtos";
-import { ParameterPair, toDemoParamsDto } from "../../models/demoModels";
+import { DemoParameter, toDemoParamsDto } from "../../models/demoModels";
 import { DemoThunkDispatch } from "../";
 import { updateProgress } from "./progressActions";
 
@@ -58,7 +58,7 @@ export interface HideResults {
 
 export interface InitDemoParams {
     type: actionTypes.DEMO_PARAMS_INIT;
-    parameters: ParameterPair[];
+    parameters: DemoParameter[];
 }
 
 export interface ChangeDemoParams {
@@ -190,7 +190,7 @@ export function hideResults(): HideResults {
     };
 }
 
-export function initDemoParams(parameters: ParameterPair[]): InitDemoParams {
+export function initDemoParams(parameters: DemoParameter[]): InitDemoParams {
     return {
         type: "DEMO_PARAMS_INIT",
         parameters

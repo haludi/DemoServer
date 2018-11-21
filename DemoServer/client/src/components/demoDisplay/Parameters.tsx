@@ -1,7 +1,6 @@
 import * as React from "react";
-import { ParameterPair } from "../../models/demoModels";
+import { DemoParameter } from "../../models/demoModels";
 import { DemoThunkDispatch } from "../../store";
-import { AppState } from "../../store/state";
 import { connect } from "react-redux";
 import { changeDemoParams, initDemoParams } from "../../store/actions/demoActions";
 
@@ -16,27 +15,25 @@ export interface ParameterOwnProps {
     paramDefinitions: ParameterItem[];
 }
 
-interface ParameterStateProps {
-}
-
 interface ParameterDispatchProps {
-    initParams: (parameters: ParameterPair[]) => void;
+    initParams: (parameters: DemoParameter[]) => void;
     handleValueChange: (paramName: string, value: any) => void;
 }
 
-type ParametersProps = ParameterOwnProps & ParameterStateProps & ParameterDispatchProps;
+type ParametersProps = ParameterOwnProps & ParameterDispatchProps;
 
-function toParameterPair({ name, placeholder }: ParameterItem): ParameterPair {
+function toDemoParameter({ name, placeholder, type }: ParameterItem): DemoParameter {
     return {
         name,
-        value: placeholder
+        value: placeholder,
+        type
     };
 }
 
 class ParametersDisplay extends React.Component<ParametersProps, {}> {
     componentDidMount() {
         const { initParams, paramDefinitions } = this.props;
-        const paramPairs = paramDefinitions.map(toParameterPair);
+        const paramPairs = paramDefinitions.map(toDemoParameter);
         initParams(paramPairs);
     }
 
@@ -64,17 +61,11 @@ class ParametersDisplay extends React.Component<ParametersProps, {}> {
     }
 }
 
-function mapStateToProps({ demos }: AppState): ParameterStateProps {
-    return {
-        paramValues: demos.parameters
-    };
-}
-
 function mapDispatchToProps(dispatch: DemoThunkDispatch): ParameterDispatchProps {
     return {
-        initParams: (parameters: ParameterPair[]) => dispatch(initDemoParams(parameters)),
+        initParams: (parameters: DemoParameter[]) => dispatch(initDemoParams(parameters)),
         handleValueChange: (paramName: string, value: any) => dispatch(changeDemoParams(paramName, value))
     };
 }
 
-export const Parameters = connect<ParameterStateProps, ParameterDispatchProps, ParameterOwnProps>(mapStateToProps, mapDispatchToProps)(ParametersDisplay);
+export const Parameters = connect<{}, ParameterDispatchProps, ParameterOwnProps>(null, mapDispatchToProps)(ParametersDisplay);

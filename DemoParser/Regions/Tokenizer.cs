@@ -43,7 +43,7 @@ namespace DemoParser.Regions
         {
             var match = RegionStartFinder.Match(line);
 
-            if (!match.Success)
+            if (match.Success == false)
                 return null;
 
             var captureGroup = match.Groups[1];

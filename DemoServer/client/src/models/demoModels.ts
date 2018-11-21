@@ -14,12 +14,15 @@ export interface DemoCategory {
     demos: DemoWithProgress[];
 }
 
-export interface ParameterPair {
+export type ParameterType = "text" | "date" | "number";
+
+export interface DemoParameter {
     name: string;
     value: any;
+    type: ParameterType;
 }
 
-export function toDemoParamsDto(parameters: ParameterPair[]): DemoParamsDto {
+export function toDemoParamsDto(parameters: DemoParameter[]): DemoParamsDto {
     return parameters.reduce((acc, current) => {
         return {...acc, [current.name]: current.value}
     }, {});

@@ -1,9 +1,9 @@
 import { Language } from "../../models/commonModels";
 import { DemoDto, DemoWalkthroughDto } from "../../models/dtos";
-import { ParameterPair } from "../../models/demoModels";
+import { DemoParameter } from "../../models/demoModels";
 
 interface ParametersState {
-    parameters: ParameterPair[];
+    parameters: DemoParameter[];
 }
 
 interface PrerequisitesState {
