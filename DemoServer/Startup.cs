@@ -1,4 +1,5 @@
-﻿using DemoCommon.Utils.Database;
+﻿using System.IO;
+using DemoCommon.Utils.Database;
 using DemoServer.Utils;
 using DemoServer.Utils.Cache;
 using DemoServer.Utils.Database;
@@ -49,7 +50,7 @@ namespace DemoServer
                 configuration.RootPath = GetSpaOutputDir(HostingEnvironment);
             });
 
-            var demoContainer = DemoContainer.Initialize("Controllers\\Demos", LoggerFactory.CreateLogger<DemoContainer>(), settings);
+            var demoContainer = DemoContainer.Initialize(Path.Combine("Controllers","Demos"), LoggerFactory.CreateLogger<DemoContainer>(), settings);
             
             services.AddSingleton(demoContainer);
             services.AddSingleton<DocumentStoreHolder>();

@@ -1,4 +1,4 @@
-import { deepCopy } from "../../utils/miscUtils";
+import { deepCopy } from "../../utils/MiscUtils";
 import { RouterState } from "connected-react-router";
 import { ErrorState } from "./ErrorState";
 import { DemoState } from "./DemoState";

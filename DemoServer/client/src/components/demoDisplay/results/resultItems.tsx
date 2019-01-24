@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from "../../../store/state";
-import { capitalizeFirstLetter } from "../../../utils/miscUtils";
+import { capitalizeFirstLetter } from "../../../utils/MiscUtils";
 
 const Prism = window["Prism"] as any;
 
